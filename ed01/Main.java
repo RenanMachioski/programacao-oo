@@ -60,7 +60,7 @@ public class	Main
 
             String resposta = teclado.nextLine();
 
-            jogarNovamente = resposta.equalsIgnoreCase("s");
+            jogarNovamente = resposta.equalsIgnoreCase("sim");
 
         }
 
