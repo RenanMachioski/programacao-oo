@@ -11,61 +11,45 @@ public class	Main
 
         Placar placar = new Placar();
 
-        System.out.println("Jogo de Adivinhação!");
+        System.out.println("Jogo de Adivinhacao!");
 
         boolean jogarNovamente = true;
 
-        while(jogarNovamente){
+        while (jogarNovamente) {
 
-            System.out.print("\nDigite seu nome: ");
+    System.out.print("\nDigite seu nome: ");
+    String nomeJogador = teclado.nextLine();
 
-            String nomeJogador = teclado.nextLine();
+    Jogador jogador = new Jogador(nomeJogador);
+    Jogo jogo = new Jogo(jogador);
 
-            Jogador jogador = new Jogador(nomeJogador);
+    boolean acertou = false;
 
-            Jogo jogo = new Jogo(jogador);
+    while (!acertou) {
+        System.out.print("Digite um numero entre 1 e 100: ");
+        int tentativa = teclado.nextInt();
+        teclado.nextLine(); // consumir o Enter
 
-            boolean acertou = false;
+        String resultado = jogo.jogar(tentativa);
+        System.out.println(resultado);
 
-            while( !acertou ){
-
-                System.out.print("Digite um número entre 1 e 100: ");
-
-                int tentativa = teclado.nextInt();
-
-                teclado.nextLine();
-
-
-                String resultado = jogo.jogar(tentativa);
-
-                System.out.println(resultado);
-
-                if(resultado.equals("Acertou!")){
-
-                    acertou = true;
-
-                }
-
-            }
-
-            System.out.println("\nParabéns, "+ jogador.getNome() + "!");
-
-            System.out.println("Tentativas: " + jogador.getTentativas());
-
-            System.out.println("Pontuação: " + jogador.getPontuacao());
-
-            placar.adicionarJogador(jogador);
-
-            System.out.print("\nDeseja jogar novamente? (sim/nao): ");
-
-            String resposta = teclado.nextLine();
-
-            jogarNovamente = resposta.equalsIgnoreCase("sim");
-
+        if (resultado.equals("Acertou!")) {
+            acertou = true;
         }
+    }
 
-        placar.mostrarRanking();
+    System.out.println("\nParabens, " + jogador.getNome() + "!");
+    System.out.println("Tentativas: " + jogador.getTentativas());
+    System.out.println("Pontuação: " + jogador.getPontuacao());
 
-        teclado.close();
+    placar.adicionarJogador(jogador);
+
+    System.out.print("\nDeseja jogar novamente? (sim/nao): ");
+    String resposta = teclado.nextLine();
+    jogarNovamente = resposta.equalsIgnoreCase("sim");
+
+    // AQUI -> Mostrando o ranking após cada partida
+    placar.mostrarRanking();
+        }
     }
 }
