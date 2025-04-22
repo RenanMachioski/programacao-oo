@@ -34,11 +34,11 @@ public class Jogo
         }
 
         else if( tentativa < numeroSecreto ){
-            return "O número secreto é maior.";
+            return "O numero secreto é maior.";
         }
 
         else{
-            return "O número secreto é menor.";
+            return "O numero secreto é menor.";
         }
     }
 }
